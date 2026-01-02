@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <title>Portfolio - Modern Minimal Dark</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #000000;
+      color: #eaeaea;
+      transition: background 0.4s ease, color 0.4s ease;
+      overflow-x: hidden;
+      text-align: center;
+    }
+
+    .fade {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    header {
+      padding: 60px 10%;
+    }
+    header img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 20px;
+      
+    }
+    header h1 {
+      font-size: 3.5rem;
+      font-weight: 780;
+    }
+    header h1 .im {
+      color: #ffffff;
+    }
+    header h1 .name {
+      color: #d40404; /* crimson red for dark theme */
+    }
+    header h2 {
+    font-family: 'Montserrat', sans-serif;
+    margin-top: -30px;
+    font-weight: 900;
+    font-size: 2.2rem;
+    }
+    .section {
+      padding: 60px 10%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .section .about {
+      margin-top: -100px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 14.9px;
+      line-height: 1.4;
+      display: block;
+      color: #b8b8b8;
+    }
+    .title {
+      font-size: 2.6rem;
+      margin-bottom: 60px;
+      color: #ffffff;
+      border-bottom: 2px solid #d40404;
+      padding-bottom: 5px;
+      display: inline-block;
+      width: 100%;
+    }
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background: #1e1e1e;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+      transition: transform 0.3s;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+      color: #eaeaea;
+      text-align: left;
+    }
+    .card img.project-image {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 6px;
+      margin: 10px 0;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+    }
+    .resume-btn {
+      display: inline-block;
+    padding: 1rem 2rem;
+    background: transparent;
+    border: 2px solid #AA0202; /* Red border */
+    border-radius: 30px;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 700;
+    margin-top: -3rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+     
+    }
+    .resume-btn:hover {
+     background: #AA0202; /* Red background on hover */
+     color: #fff;
+     border-color: #8b0101;
+     box-shadow: 0 0 15px rgba(170, 2, 2, 0.4); /* Glow effect */
+     }
+
+    .project-btn {
+      width: 100%;
+      padding: 12px 0;
+      background: linear-gradient(135deg, #AA0202, #700101);
+      border: none;
+      color: white;
+      font-size: 15px;
+      font-weight: bold;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      margin-top: auto;
+     }
+    .project-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.5);
+      background: #AA0202; /* Red background on hover */
+    color: #fff;
+    border-color: #8b0101;
+    box-shadow: 0 0 15px rgba(170, 2, 2, 0.4); /* Glow effect */
+    }
+    .project-btn:active {
+      transform: scale(0.96);
+    }
+    ul {
+      list-style-type: disc;
+      padding-left: 20px;
+      text-align: left;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    a {
+      color: #3b82f6;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .social {
+      margin-top: 15px;
+    }
+    .social a {
+      display: inline-block;
+      margin: 0 10px;
+      width: 32px;
+      height: 32px;
+      background-size: cover;
+      border: 2px solid #333;
+      border-radius: 25px;
+      transition: background-color 0.3s, border-color 0.3s;
+    }
+    .social a:hover{
+      border-color: #AA0202;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.5);
+    }
+    .social a.linkedin {
+      background-image: url('linkedin-logo.png');
+    }
+    .social a.instagram {
+      background-image: url('instagram-logo.png');
+    }
+    .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.skill-card {
+    padding: 2rem;
+    background: #1a1a1a;
+    border: 2px solid #333;
+    border-radius: 10px;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.skill-card:hover {
+    border-color: #AA0202; /* Red border on hover */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.5);
+
+}
+
+.skill-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #ffffff;
+    transition: color 0.3s;
+}
+
+.skill-card p {
+    color: #b8b8b8;
+}
+.education-bg {
+    background: #000000;
+}
+
+.education-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+}
+
+.education-column {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.education-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.education-dot {
+    width: 20px;
+    height: 20px;
+    border: 3px solid #AA0202;
+    border-radius: 50%;
+    background: #000000;
+    margin-top: 0.3rem;
+    flex-shrink: 0;
+}
+
+.education-content {
+    flex: 1;
+}
+
+.education-title {
+    font-size: 1.6rem;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+    transition: color 0.3s;
+    margin-top: 6px;
+    text-align:left;
+}
+
+.education-description {
+    color: #b8b8b8;
+    line-height: 1.6;
+    transition: color 0.3s;
+    text-align:left;
+    
+}
+.ach-list {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-left: 200px; /* same as your style */
+}
+
+.ach-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ach-dot {
+  width: 18px;
+  height: 18px;
+  border: 3px solid #AA0202;
+  border-radius: 50%;
+  background: #000;
+  flex-shrink: 0;
+}
+
+.ach-text {
+  font-size: 1.1rem;
+  color: #ffffff;
+  margin: 0;
+  transition: color 0.3s;
+}
+
+/* =======================
+   MOBILE RESPONSIVE FIXES
+   ======================= */
+@media (max-width: 768px) {
+
+  body {
+    text-align: center;
+    padding: 0;
+  }
+
+  header {
+    padding: 40px 5%;
+  }
+
+  header img {
+    width: 110px;
+    height: 110px;
+  }
+
+  header h1 {
+    font-size: 2.2rem;
+    line-height: 1.2;
+  }
+
+  header h2 {
+    font-size: 1.3rem;
+    margin-top: -10px;
+  }
+
+  .section {
+    padding: 40px 5%;
+  }
+
+  .about {
+    font-size: 14px !important;
+    padding: 0 10px;
+    line-height: 1.5;
+  }
+
+  .title {
+    font-size: 1.9rem;
+    margin-bottom: 40px;
+    width: auto;
+  }
+
+  /* Skills Grid */
+  .skills-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .skill-card {
+    padding: 1.5rem;
+  }
+
+  /* Education */
+  .education-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .education-title {
+    font-size: 1.3rem;
+  }
+
+  .education-description {
+    font-size: 14px;
+  }
+
+  /* Achievements & Certifications */
+  .ach-list {
+    padding-left: 0 !important;
+    gap: 20px;
+  }
+
+  .ach-text {
+    font-size: 1rem;
+    text-align: left;
+  }
+
+  /* Projects */
+  .projects {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .card {
+    height: auto;
+  }
+
+  .project-image {
+    height: 180px !important;
+  }
+
+  /* Contact section */
+  .contact-wrapper {
+    flex-direction: column;
+    align-items: center !important;
+    text-align: center !important;
+  }
+
+  .contact-left,
+  .contact-right {
+    text-align: center !important;
+    width: 100%;
+  }
+
+  .contact-item {
+    justify-content: center;
+  }
+
+  .contact-left h2 {
+    font-size: 22px;
+  }
+
+  footer {
+    padding: 30px;
+    font-size: 14px;
+  }
+}
+
+/* Extra small screens (phones under 480px) */
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 1.9rem;
+  }
+
+  header h2 {
+    font-size: 1.1rem;
+  }
+
+  .about {
+    font-size: 13px;
+  }
+
+  .title {
+    font-size: 1.7rem;
+  }
+
+  .project-image {
+    height: 160px;
+  }
+
+  .ach-text {
+    font-size: 0.95rem;
+  }
+}
+
+
+  </style>
+</head>
+<body>
+  <header class="fade">
+    <img src="hisham.jpg" alt="Profile Photo">
+    <h1><span class="im">I'm </span><span class="name">MUHAMMED HISHAM C</span></h1>
+    <h2>Cybersecurity Professional</h2>
+
+    <div class="social">
+      <a href="https://linkedin.com" class="linkedin"></a>
+      <a href="https://instagram.com" class="instagram"></a>
+    </div>
+  </header>
+   <section class="section fade" id="about">
+    <p><span class="about">Cybersecurity professional skilled in web pentesting, red teaming, threat hunting, and cloud security. I analyze threats, uncover vulnerabilities, respond to incidents, and secure systems end-to-end.</span></p>
+    <a class="resume-btn" href="resume.pdf" download>View Resume</a>
+  </section>
+
+  <section id="skills" class="skills-bg section fade">
+        <h2 class="title">Skills & Technologies</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <h3>Scripting</h3>
+                <p>Python, Bash,C</p>
+            </div>
+            <div class="skill-card">
+                <h3>Security Tools</h3>
+                <p>Burp Suite, Nmap, Wireshark, Metasploit, Hydra, Gobuster, Hashcat, sqlmap </p>
+            </div>
+            <div class="skill-card">
+                <h3>SIEM & Active Directory</h3>
+                <p>Splunk, ELK Stack, Wazuh</p>
+            </div>
+            <div class="skill-card">
+                <h3>Operating System</h3>
+                <p>Linux, Windows</p>
+            </div>
+            <div class="skill-card">
+                <h3>Web Penetration Testing</h3>
+                <p>OWASP Top 10</p>
+            </div>
+            <div class="skill-card">
+                <h3>Networking</h3>
+                <p>TCP/IP, DNS, DHCP</p>
+            </div>
+        </div>
+    </section>
+
+<section id="education" class="education-bg section fade">
+    <h2 class="title">Education</h2>
+
+    <div class="education-container">
+
+        <!-- Column 1 -->
+        <div class="education-column">
+            <div class="education-item">
+                <div class="education-dot"></div>
+                <div class="education-content">
+                    <h3 class="education-title">Bachelor of Computer Application(Calicut University) 2021-2025</h3>
+                    <p class="education-description">Bachelor of Computer Applications focused on programming, databases, networking, and foundational computer science concepts, with practical experience in software development and system management.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Column 2 -->
+        <div class="education-column">
+            <div class="education-item">
+                <div class="education-dot"></div>
+                <div class="education-content">
+                    <h3 class="education-title">Higher Secondary - Seva Mandir Post Basic HSS Kozhikode 2019-2021</h3>
+                    <p class="education-description">Completed higher secondary education in Computer Science stream with a strong academic foundation, actively participating in school-level activities and building core analytical and communication skills.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+  <section class="section fade" id="achievements" style="align-items: flex-start; text-align: center;">
+  <h2 class="title">Achievements</h2>
+
+  <div class="ach-list">
+
+    <div class="ach-item">
+      <div class="ach-dot"></div>
+      <h3 class="ach-text">Earned a certificate for developing a CTF challenge machine</h3>
+    </div>
+
+    <div class="ach-item">
+      <div class="ach-dot"></div>
+      <h3 class="ach-text">Reported valid vulnerabilities under Bug Bounty programs</h3>
+    </div>
+
+    <div class="ach-item">
+      <div class="ach-dot"></div>
+      <h3 class="ach-text">Completed TryHackMe Advent of Cyber 2025</h3>
+    </div>
+
+    <div class="ach-item">
+      <div class="ach-dot"></div>
+      <h3 class="ach-text">Completed ELK-based SIEM deployment for log analysis</h3>
+    </div>
+
+  </div>
+</section>
+
+
+  <section class="section fade" id="certifications" style="align-items: flex-start; text-align: center;">
+    <h2 class="title">Certifications</h2>
+     <div class="ach-list">
+
+         <div class="ach-item">
+      <div class="ach-dot"></div>
+      <h3 class="ach-text">Google Cybersecurity Professional Certificate</h3>
+    </div>
+          <div class="ach-item">
+      <div class="ach-dot"></div>
+      <h3 class="ach-text">Cisco Ethical Hacker Certification</h3>
+    </div>
+            <div class="ach-item">
+      <div class="ach-dot"></div>
+      <h3 class="ach-text">MicrosoftExcel(coursera)</h3>
+    </div>
+           <div class="ach-item">
+      <div class="ach-dot"></div>
+      <h3 class="ach-text">EC-Council CEH (Pursuing)</h3>
+    </div>
+            <div class="ach-item">
+      <div class="ach-dot"></div>
+      <h3 class="ach-text">Advanced Diploma in Cyber Defense (ADCD)</h3>
+    </div>
+
+  </section>
+
+  <section class="section fade" id="projects" style="align-items: flex-start; text-align: center;">
+  <h2 class="title">Projects</h2>
+
+  <div class="projects">
+
+    <div class="card">
+      <h3>Custom CTF Machine</h3>
+      <img src="project1.png" alt="Custom CTF Machine" class="project-image">
+      <p>Built a multi-stage CTF machine involving SQL Injection, privilege escalation, and log analysis challenges.</p>
+      <button class="project-btn" onclick="location.href='https://tryhackme.com/room/injectctf'">View Project</button>
+    </div>
+
+    <div class="card">
+      <h3>SIEM Lab Setup</h3>
+      <img src="project2.jpg" alt="SIEM Lab Setup" class="project-image">
+      <p>Deployed and configured the ELK Stack for log ingestion, threat detection, and dashboard visualization.</p>
+      <button class="project-btn" onclick="location.href='https://www.linkedin.com/'">View Project</button>
+    </div>
+
+  </div>
+</section>
+
+  <section class="section fade" id="contact" style="text-align: center;">
+    <h2 class="title">Contact</h2>
+
+    <div class="contact-wrapper" style="display:flex;justify-content:space-between;align-items:flex-start;width:100%;max-width:900px;margin:auto;gap:30px;">
+
+      <!-- Left: Get in Touch -->
+      <div class="contact-left" style="text-align:left;flex:1;">
+        <h2 style="margin-bottom:15px;color:#fff;font-size:26px;font-weight:600;">Get In Touch</h2>
+        <p style="color:#ccc;font-size:16px;line-height:1.6;">Feel free to reach out for collaborations, projects, or cybersecurity discussions.</p>
+      </div>
+
+      <!-- Right: Contact Details -->
+      <div class="contact-right" style="flex:1;text-align:left;">
+        <div class="contact-item" style="display:flex;align-items:center;gap:12px;margin-bottom:18px;">
+          <svg width="26" height="26" fill="none" stroke="#AA0202" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 3.1 9.18 2 2 0 0 1 5.11 7h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11l-1.27 1.27a16 16 0 0 0 6.88 6.88l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <a href="tel:+919567426738" style="color:#AA0202;text-decoration:none;font-weight:600;">+91 9567426738</a>
+        </div>
+
+        <div class="contact-item" style="display:flex;align-items:center;gap:12px;margin-bottom:18px;">
+          <svg width="26" height="26" fill="none" stroke="#AA0202" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <a href="mailto:Muhammedhisham.c4321@gmail.com" style="color:#AA0202;text-decoration:none;font-weight:600;">Muhammedhisham.c4321@gmail.com</a>
+        </div>
+
+        <div class="contact-item" style="display:flex;align-items:center;gap:12px;">
+          <svg width="26" height="26" fill="none" stroke="#AA0202" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <p style="margin:0;color:#ccc;">Kerala, India</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <footer style="text-align:center;padding:40px;color:#777;">© 2026 hisham_c</footer>
+
+  <script>
+    const faders = document.querySelectorAll('.fade');
+    const appear = new IntersectionObserver((entries)=>{
+      entries.forEach(entry =>{
+        if(entry.isIntersecting){ entry.target.classList.add('visible'); }
+      })
+    }, {threshold:0.2});
+
+    faders.forEach(f => appear.observe(f));
+  </script>
+</body>
+</html>
